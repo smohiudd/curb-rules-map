@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/components/RulesContainer.module.css"],"names":["module","exports","container"],"mappings":"mGACAA,EAAAC,QAAA,CAAkBC,UAAA","file":"styles-4247dfe1d23afe5549d5.js","sourcesContent":["// extracted by mini-css-extract-plugin\nmodule.exports = {\"container\":\"RulesContainer-module--container--1ReJ0\"};"],"sourceRoot":""}
