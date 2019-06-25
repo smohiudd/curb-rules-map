@@ -14,7 +14,7 @@ class CurbMap extends Component {
     this.state = {
       TimeValue:'10:00',
       DayValue:1,
-      SelectedView:"Parking Rate"
+      SelectedView:"Parking Class"
     };
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
@@ -25,7 +25,7 @@ class CurbMap extends Component {
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/saadiqm/cjbjougmt08z72rsa7me1duoi',
+      style: 'mapbox://styles/saadiqm/cjxbd493m05cc1cl29jntlb1w',
       center: [-114.0708, 51.0486],
       zoom:15
     });
@@ -166,8 +166,6 @@ class CurbMap extends Component {
   }
 
   render(){
-
-
 
     return(
       <div>
