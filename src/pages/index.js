@@ -57,7 +57,7 @@ class CurbMap extends Component {
           },
           "paint": {
             "line-color": ['match', ['get', 'class',['get','who',['get','restrictions']]],
-                     'Passenger Vehicle', '#cd41f4',
+                     'Passenger Vehicle', '#4286f4',
                      'Taxi', 'red',
                      'Loading','yellow',
                      'Calgary Transit Access','orange',
@@ -66,16 +66,19 @@ class CurbMap extends Component {
             "line-offset": scaledWidth(15),
             "line-opacity": 0.7
           },
-          filter:["all",["match", ['get',"side"],"right",true,false],["match",['get', 'activity',['get','what',['get','restrictions']]],"park", true,false]]
+          filter:["all",["match",['get',"side"],"right",true,false],["match",['get','activity',['get','what',['get','restrictions']]],"park", true,false]]
         });
 
       this.map.addLayer({
         "id": "Parking Class Left",
         "type": "line",
         "source": "Curbs",
+        "layout":{
+          "visibility":"none"
+        },
         "paint": {
           "line-color": ['match', ['get', 'class',['get','who',['get','restrictions']]],
-                   'Passenger Vehicle', '#cd41f4',
+                   'Passenger Vehicle', '#4286f4',
                    'Taxi', 'red',
                    'Loading','green',
                    'Calgary Transit Access','orange',
@@ -84,7 +87,7 @@ class CurbMap extends Component {
           "line-offset": scaledWidth(-15),
           "line-opacity": 0.7
         },
-        filter:["all",["match", ['get',"side"],"left",true,false],["match",['get', 'activity',['get','what',['get','restrictions']]],"park", true,false]]
+        filter:["all",["match",['get',"side"],"left",true,false],["match",['get','activity',['get','what',['get','restrictions']]],"park", true,false]]
       });
 
       this.map.addLayer({
@@ -98,15 +101,15 @@ class CurbMap extends Component {
             "line-color": ["interpolate",
                 ["linear"],
                 ['*',['/',['get', 'rate',['get','payment',['get','restrictions']]] , ['number', ['get', 'interval',['get','payment',['get','restrictions']]], 1]],60],
-                1,'#a417d3',
-                3,'#d18417',
-                4.5,'#ffff00',
+                0,'#6105ff',
+                3,'#ff780a',
+                4.5,'#ffee00',
             ],
             "line-width": scaledWidth(12),
             "line-offset": scaledWidth(15),
             "line-opacity": 0.7
           },
-          filter:["all",["match", ['get',"side"],"right",true,false],["match",['get', 'activity',['get','what',['get','restrictions']]],"park", true,false]]
+          filter:["all",["match", ['get',"side"],"right",true,false],["match",['get', 'activity',['get','what',['get','restrictions']]],"park",true,false],["match",['get','class',['get','who',['get','restrictions']]],"Passenger Vehicle", true,false]]
         });
 
         this.map.addLayer({
@@ -120,15 +123,15 @@ class CurbMap extends Component {
               "line-color": ["interpolate",
                   ["linear"],
                   ['*',['/',['get', 'rate',['get','payment',['get','restrictions']]] , ['number', ['get', 'interval',['get','payment',['get','restrictions']]], 1]],60],
-                  1,'#a417d3',
-                  3,'#d18417',
-                  4.5,'#ffff00',
+                  0,'#6105ff',
+                  3,'#ff780a',
+                  4.5,'#ffee00',
               ],
               "line-width": scaledWidth(12),
               "line-offset": scaledWidth(-15),
               "line-opacity": 0.7
             },
-            filter:["all",["match", ['get',"side"],"left",true,false],["match",['get', 'activity',['get','what',['get','restrictions']]],"park", true,false]]
+            filter:["all",["match", ['get',"side"],"left",true,false],["match",['get', 'activity',['get','what',['get','restrictions']]],"park", true,false],["match",['get','class',['get','who',['get','restrictions']]],"Passenger Vehicle", true,false]]
           });
 
         this.map.setLayoutProperty(this.state.SelectedView+" Right", 'visibility', 'visible');

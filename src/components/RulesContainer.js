@@ -1,6 +1,7 @@
 import React from "react"
 import rulesStyles from "./RulesContainer.module.css"
 
+
 function SelectTime(props){
     let intervals = ["00", "30"];
     let times = [];
@@ -65,38 +66,66 @@ function SelectToggle(props){
     }
 
   return(
-    <div className="left toggle-group mt12 border border--2 border--white bg-white shadow-darken10">
+    <div className="left toggle-group mt6 mb12 border border--2 border--white bg-white shadow-darken10">
          {options.map(renderOptions)}
     </div>
   )
 }
 
-function Rules(props){
+function ParkingRateView(){
+   return (
 
-  let output = null
+     <div className='w240 mt12 txt-s'>
+      <strong className='block mb6'>Parking Rate</strong>
+      <div className='grid mb6'>
+        <div className='col h12' style={{backgroundColor: "#6105ff"}}></div>
+        <div className='col h12' style={{backgroundColor: "#af3d87"}}></div>
+        <div className='col h12' style={{backgroundColor: "#cb525a"}}></div>
+        <div className='col h12' style={{backgroundColor: "#e56532"}}></div>
+        <div className='col h12' style={{backgroundColor: "#fe770c"}}></div>
+        <div className='col h12' style={{backgroundColor: "#ff9807"}}></div>
+        <div className='col h12' style={{backgroundColor: "#ffb605"}}></div>
+        <div className='col h12' style={{backgroundColor: "#ffd302"}}></div>
+        <div className='col h12' style={{backgroundColor: "#ffee00"}}></div>
+      </div>
+      <div className='grid txt-s'>
+        <div className='col flex-child--grow'>$0/hour</div>
+        <div className='col flex-child--grow align-r'>$5/hour</div>
+      </div>
+    </div>
 
-  if(props.rules=="Parking Class"){
-    output = ""
-  }else{
-    output = ""
-  }
+   )
+ }
 
-  return(
+function ClassView(){
+  return (
     <div>
-      <h4>{output}</h4>
+      <span className="txt-m mt12 block"><span className='inline-block w12 h12 round-full bg-blue-light'></span>  Passenger Vehicle</span>
+      <span className="txt-m block"><span className='inline-block w12 h12 round-full bg-green'></span>  Loading Zone</span>
+      <span className="txt-m block"><span className='inline-block w12 h12 round-full bg-red'></span>  Taxi Zone</span>
+      <span className="txt-m block"><span className='inline-block w12 h12 round-full bg-yellow'></span>  Calgary Transit Access</span>
     </div>
   )
+}
+
+function Rules(props){
+  if(props.rules==="Parking Rate"){
+    return <ParkingRateView  />
+  }
+  return <ClassView />
+
 }
 
 function RulesContainer(props) {
   return (
     <div className={rulesStyles.container}>
       <div className="prose">
-        <h3>Parking Rules</h3>
-        <p className='txt-s'>Click on the filters below to see parking classes and rates in Calgary</p>
+        <h4>On-Street Parking Rules Map</h4>
+        <p className='txt-xs'>Click on the filters below to see parking class type and rates in Calgary</p>
+        <SelectToggle checkedValue={props.view} handleViewChange={props.onViewChange}/>
         <SelectDay dayValue={props.day} handleDayChange={props.onDayChange}/>
         <SelectTime timeValue={props.time} handleTimeChange={props.onTimeChange}/>
-        <SelectToggle checkedValue={props.view} handleViewChange={props.onViewChange}/>
+
         <Rules rules={props.viewcontext}/>
       </div>
     </div>
